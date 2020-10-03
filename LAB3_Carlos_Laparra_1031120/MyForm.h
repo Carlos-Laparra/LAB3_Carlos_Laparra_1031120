@@ -35,6 +35,7 @@ namespace LAB3CarlosLaparra1031120 {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ lbl_m;
 	private: System::Windows::Forms::Label^ lbl_Movimientos_Totales;
+	private: System::Windows::Forms::Button^ btn_Ayuda;
 	public:
 		Lista* miPilaGeneral;
 		MyForm(void)
@@ -144,6 +145,7 @@ namespace LAB3CarlosLaparra1031120 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->lbl_m = (gcnew System::Windows::Forms::Label());
 			this->lbl_Movimientos_Totales = (gcnew System::Windows::Forms::Label());
+			this->btn_Ayuda = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// lb_g1
@@ -401,6 +403,7 @@ namespace LAB3CarlosLaparra1031120 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::DarkSeaGreen;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 10, System::Drawing::FontStyle::Bold));
 			this->button1->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button1->Location = System::Drawing::Point(675, 522);
 			this->button1->Name = L"button1";
@@ -442,6 +445,19 @@ namespace LAB3CarlosLaparra1031120 {
 			this->lbl_Movimientos_Totales->Size = System::Drawing::Size(0, 38);
 			this->lbl_Movimientos_Totales->TabIndex = 26;
 			// 
+			// btn_Ayuda
+			// 
+			this->btn_Ayuda->BackColor = System::Drawing::Color::DarkSeaGreen;
+			this->btn_Ayuda->Enabled = false;
+			this->btn_Ayuda->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 10, System::Drawing::FontStyle::Bold));
+			this->btn_Ayuda->Location = System::Drawing::Point(488, 523);
+			this->btn_Ayuda->Name = L"btn_Ayuda";
+			this->btn_Ayuda->Size = System::Drawing::Size(146, 46);
+			this->btn_Ayuda->TabIndex = 27;
+			this->btn_Ayuda->Text = L"Ayuda";
+			this->btn_Ayuda->UseVisualStyleBackColor = false;
+			this->btn_Ayuda->Click += gcnew System::EventHandler(this, &MyForm::btn_Ayuda_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -449,6 +465,7 @@ namespace LAB3CarlosLaparra1031120 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1169, 652);
+			this->Controls->Add(this->btn_Ayuda);
 			this->Controls->Add(this->lbl_Movimientos_Totales);
 			this->Controls->Add(this->lbl_m);
 			this->Controls->Add(this->label1);
@@ -644,6 +661,7 @@ private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Fo
 		btn_extraer->Enabled = true;
 		btn_insertar->Enabled = true;
 		btn_Mostrar_Carta_Mazo->Enabled = true;
+		btn_Ayuda->Enabled = true;
 	}
 }
 private: System::Void btn_Mostrar_Carta_Mazo_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1005,6 +1023,155 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 	   }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Restart();
+}
+private: System::Void btn_Ayuda_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (miPilaGeneral->GetValueAtEnd() == (miPila1->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 1");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila2->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 2");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila3->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 3");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila4->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 4");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila5->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 5");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila6->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 6");
+	}
+	else if (miPilaGeneral->GetValueAtEnd() == (miPila7->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del mazo al grupo 7");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 2");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 3");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 4");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 5");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 6");
+	}
+	else if (miPila1->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 1 al grupo 7");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 71");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 3");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 4");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 5");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 6");
+	}
+	else if (miPila2->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 2 al grupo 7");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 1");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 2");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 4");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 5");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 6");
+	}
+	else if (miPila3->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 3 al grupo 7");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 1");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 2");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 3");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 5");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 6");
+	}
+	else if (miPila4->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 4 al grupo 7");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 1");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 2");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 3");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 4");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 6");
+	}
+	else if (miPila5->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 5 al grupo 7");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 6 al grupo 1");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 6 al grupo 2");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 6 al grupo 3");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+		MessageBox::Show("Puede mover del grupo 6 al grupo 4");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 6 al grupo 5");
+	}
+	else if (miPila6->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 6 al grupo 7");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 1");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 2");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 3");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 4");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 5");
+	}
+	else if (miPila7->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
+	MessageBox::Show("Puede mover del grupo 7 al grupo 6");
+	}
 }
 };
 }
