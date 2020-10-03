@@ -21,7 +21,8 @@ namespace LAB3CarlosLaparra1031120 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
-	public:		
+	public:	
+		//Pilas y listas que se usarán 
 		Lista* miLista;
 		Pila* miPila;
 		Pila* miPila1;
@@ -36,10 +37,13 @@ namespace LAB3CarlosLaparra1031120 {
 	private: System::Windows::Forms::Label^ lbl_m;
 	private: System::Windows::Forms::Label^ lbl_Movimientos_Totales;
 	private: System::Windows::Forms::Button^ btn_Ayuda;
+	private: System::Windows::Forms::Label^ lbl_p;
+	private: System::Windows::Forms::Label^ lbl_puntaje;
 	public:
 		Lista* miPilaGeneral;
 		MyForm(void)
 		{
+			//Declaración de pilas y listas creadas que se usarán
 			InitializeComponent();
 			miLista = new Lista();
 			miLista->conta = 0;
@@ -146,6 +150,8 @@ namespace LAB3CarlosLaparra1031120 {
 			this->lbl_m = (gcnew System::Windows::Forms::Label());
 			this->lbl_Movimientos_Totales = (gcnew System::Windows::Forms::Label());
 			this->btn_Ayuda = (gcnew System::Windows::Forms::Button());
+			this->lbl_p = (gcnew System::Windows::Forms::Label());
+			this->lbl_puntaje = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// lb_g1
@@ -429,7 +435,7 @@ namespace LAB3CarlosLaparra1031120 {
 			this->lbl_m->AutoSize = true;
 			this->lbl_m->BackColor = System::Drawing::Color::Transparent;
 			this->lbl_m->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 12, System::Drawing::FontStyle::Bold));
-			this->lbl_m->Location = System::Drawing::Point(937, 514);
+			this->lbl_m->Location = System::Drawing::Point(1125, 151);
 			this->lbl_m->Name = L"lbl_m";
 			this->lbl_m->Size = System::Drawing::Size(177, 46);
 			this->lbl_m->TabIndex = 25;
@@ -440,7 +446,7 @@ namespace LAB3CarlosLaparra1031120 {
 			this->lbl_Movimientos_Totales->AutoSize = true;
 			this->lbl_Movimientos_Totales->BackColor = System::Drawing::Color::Transparent;
 			this->lbl_Movimientos_Totales->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 10, System::Drawing::FontStyle::Bold));
-			this->lbl_Movimientos_Totales->Location = System::Drawing::Point(1032, 578);
+			this->lbl_Movimientos_Totales->Location = System::Drawing::Point(1207, 209);
 			this->lbl_Movimientos_Totales->Name = L"lbl_Movimientos_Totales";
 			this->lbl_Movimientos_Totales->Size = System::Drawing::Size(0, 38);
 			this->lbl_Movimientos_Totales->TabIndex = 26;
@@ -458,13 +464,36 @@ namespace LAB3CarlosLaparra1031120 {
 			this->btn_Ayuda->UseVisualStyleBackColor = false;
 			this->btn_Ayuda->Click += gcnew System::EventHandler(this, &MyForm::btn_Ayuda_Click);
 			// 
+			// lbl_p
+			// 
+			this->lbl_p->AutoSize = true;
+			this->lbl_p->BackColor = System::Drawing::Color::Transparent;
+			this->lbl_p->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 14, System::Drawing::FontStyle::Bold));
+			this->lbl_p->Location = System::Drawing::Point(1133, 405);
+			this->lbl_p->Name = L"lbl_p";
+			this->lbl_p->Size = System::Drawing::Size(138, 53);
+			this->lbl_p->TabIndex = 28;
+			this->lbl_p->Text = L"Puntaje: ";
+			// 
+			// lbl_puntaje
+			// 
+			this->lbl_puntaje->AutoSize = true;
+			this->lbl_puntaje->BackColor = System::Drawing::Color::Transparent;
+			this->lbl_puntaje->Font = (gcnew System::Drawing::Font(L"Reem Kufi", 10, System::Drawing::FontStyle::Bold));
+			this->lbl_puntaje->Location = System::Drawing::Point(1196, 483);
+			this->lbl_puntaje->Name = L"lbl_puntaje";
+			this->lbl_puntaje->Size = System::Drawing::Size(0, 38);
+			this->lbl_puntaje->TabIndex = 29;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1169, 652);
+			this->ClientSize = System::Drawing::Size(1314, 652);
+			this->Controls->Add(this->lbl_puntaje);
+			this->Controls->Add(this->lbl_p);
 			this->Controls->Add(this->btn_Ayuda);
 			this->Controls->Add(this->lbl_Movimientos_Totales);
 			this->Controls->Add(this->lbl_m);
@@ -502,6 +531,7 @@ namespace LAB3CarlosLaparra1031120 {
 
 		}
 #pragma endregion
+		//Mazos y vectores de "String" que se utilizarán para guardar el valor de las letras
 		array<String^>^ mazo = gcnew array<String^>(52);
 		array<String^>^ mazo_revuelto = gcnew array<String^>(52);
 		array<String^>^ mazo_revuelto_letras = gcnew array<String^>(52);
@@ -513,6 +543,7 @@ namespace LAB3CarlosLaparra1031120 {
 		array<String^>^ mazo6= gcnew array<String^>(20);
 		array<String^>^ mazo7= gcnew array<String^>(20);
 		array<String^>^ mazogeneral = gcnew array<String^>(40);
+		//Contadores y otras variables
 		int guardar_numero;
 		int numero_extraer;
 		int numero_insertar;
@@ -524,8 +555,11 @@ namespace LAB3CarlosLaparra1031120 {
 		int contador6 = 0;
 		int contador7 = 0;
 		int movimientos = 0;
+		int puntaje = 0;
+		//Método para hacer el mazo
 		void hacer_mazo() {
 			try {
+				//Se crea el mazo en orden
 				for (int i = 0; i < 52; i++) {
 					if (i >= 0 && i <= 12) {
 						mazo[i] =  "N";
@@ -544,6 +578,7 @@ namespace LAB3CarlosLaparra1031120 {
 						miLista->InsertAtStart(i-38);
 					}
 				}
+				//Método para revolver mazo
 				revolver_mazo();
 
 			}
@@ -556,6 +591,7 @@ namespace LAB3CarlosLaparra1031120 {
 			int valor;
 			try {
 				for (int i = 0; i < 51; i++) {
+					//Función random
 					srand(time(NULL));
 					random = rand() %mazo->Length;
 					valor = miLista->GetValue(random);
@@ -564,10 +600,13 @@ namespace LAB3CarlosLaparra1031120 {
 					mazo_revuelto[i] = Convert::ToString(miPila->Value(i)) + mazo[random];
 					mazo_revuelto_letras[i] = mazo[random];
 					for (int o = random; o < mazo->Length - 1; o++) {
+						//Para ir eliminando letras del vector
 						mazo[o] = mazo[o + 1];
 					}
+					//Redefinir el tamaño del vector
 					mazo->Resize(mazo, mazo->Length - 1);
 				}
+				//Método para repartir cartas en el tablero
 				repartir_cartas(mazo_revuelto);
 			}
 			catch (Exception^ e) {
@@ -579,6 +618,7 @@ namespace LAB3CarlosLaparra1031120 {
 			String^ carta;
 			array<Int32^>^ numeros = gcnew array<Int32^>(52);
 			for (int i = 0; i < mazoA->Length; i++) {
+				//Nuevamenete repartición de carta en los distintos vectores
 				if (i < 1) {
 					carta = mazoA[i];
 					numeros[i] = definir_numero(carta);
@@ -638,6 +678,7 @@ namespace LAB3CarlosLaparra1031120 {
 			}
 			lb_Mazo->Items->Add(miPilaGeneral->GetValueAtEnd() + mazogeneral[0]);
 		}
+		//Sirve para devolver un valor numérico que se obtiene del vector que guarda numero y color, usando el substring
 		int definir_numero(String^ carta) {
 			int numero;
 			if (carta->Length > 2) {
@@ -655,6 +696,7 @@ namespace LAB3CarlosLaparra1031120 {
 private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+	//Validación para que se cree todo cuando apache la teclar r
 	if (e->KeyCode == Keys::R)
 	{
 		hacer_mazo();
@@ -665,6 +707,7 @@ private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Fo
 	}
 }
 private: System::Void btn_Mostrar_Carta_Mazo_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Crear las cartas del mazo
 	lb_Mazo->Items->Clear();
 	int contador = 0;
 	contador++;
@@ -680,17 +723,21 @@ private: System::Void btn_Mostrar_Carta_Mazo_Click(System::Object^ sender, Syste
 	//lb_Mazo->Items->Add(mazogeneral[])
 }
 private: System::Void btn_extraer_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Se extraen las cartas 
 	try {
 		numero_extraer = Convert::ToInt32(txt_extraer->Text);
-
+		//Se extrae del mazo
 		if (numero_extraer == 0) {
+			//Validación lista vacía
 			if (miPilaGeneral->isEmpty()) {
 				MessageBox::Show("La Lista está vacía", "Correcto", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 			else {
+				//Se iguala una variable al valor que esté en la última posición de la pila
 				guardar_numero = miPilaGeneral->GetValueAtEnd();
 			}
 		}
+		//Se repiten los pasos pero con cada grupo
 		else if (numero_extraer == 1) {
 			if (miPila1->isEmpty()) {
 				MessageBox::Show("La Lista está vacía", "Correcto", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -748,18 +795,21 @@ private: System::Void btn_extraer_Click(System::Object^ sender, System::EventArg
 			}
 		}
 		else {
-			MessageBox::Show("El número que ingresó no está dentro de los parámetros");
+			//En caso que ingrese un número fuera de los parámetros 
+			MessageBox::Show("El número que ingresó no está dentro de los parámetros", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
 	catch (Exception^ e) {
-		MessageBox::Show("Ingresó un valor inválido");
+		//En caso que no ingrese un número
+		MessageBox::Show("Ingresó un valor inválido","Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 
 }
 private: System::Void btn_insertar_Click(System::Object^ sender, System::EventArgs^ e) {
 	numero_insertar = Convert::ToInt32(txt_insertar->Text);
-
+	//Validación para insertar
 	if (numero_insertar == 1) {
+		//Si la lista está vacía guarda cualquier número
 		if (miPila1->isEmpty()) {
 			miPila1->Insert(guardar_numero);
 			lb_g1->Items->Add(guardar_numero + definir_letra(numero_extraer));
@@ -767,16 +817,21 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
 		}
+		//Si la pila tiene elementos solo admite un valor que sea exactamente al valor que está al final menos 1
 		else if (guardar_numero == (miPila1->Value_Extract_Peek()-1)) {
-			miPila1->Insert(guardar_numero);
-			lb_g1->Items->Add(guardar_numero + definir_letra(numero_extraer));
-			definir_Pila(numero_extraer);
-			movimientos++;
-			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
-			ganador();
+				miPila1->Insert(guardar_numero);
+				lb_g1->Items->Add(guardar_numero + definir_letra(numero_extraer));
+				definir_Pila(numero_extraer);
+				movimientos++;
+				lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+				puntaje = puntaje + 5;
+				lbl_puntaje->Text = Convert::ToString(puntaje);
+				//Se manda al método de ganador
+				ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			//En caso que la carta no sea menor en 1 a la carta del final en el grupo que quiere ingresar, saltará un mensaje de error
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 2) {
@@ -793,10 +848,12 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 3) {
@@ -813,10 +870,12 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 4) {
@@ -833,10 +892,12 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 5) {
@@ -853,10 +914,12 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 6) {
@@ -873,11 +936,13 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 			
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else if (numero_insertar == 7) {
@@ -894,14 +959,16 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			definir_Pila(numero_extraer);
 			movimientos++;
 			lbl_Movimientos_Totales->Text = Convert::ToString(movimientos);
+			puntaje = puntaje + 5;
+			lbl_puntaje->Text = Convert::ToString(puntaje);
 			ganador();
 		}
 		else {
-			MessageBox::Show("No puede ingresar la carta aquí");
+			MessageBox::Show("No puede ingresar la carta aquí", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
 	}
 	else {
-		MessageBox::Show("El número que ingresó no está dentro de los parámetros");
+		MessageBox::Show("El número que ingresó no está dentro de los parámetros", "Atención", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
 
 }
@@ -937,6 +1004,7 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 		   if (numero_extraer == 0) {
 			   miPilaGeneral->ExtractAtEnd();
 			   lb_Mazo->Items->RemoveAt(lb_Mazo->Items->Count - 1);
+			   lb_Mazo->Items->Add(miPilaGeneral->GetValueAtEnd() + mazogeneral[0]);
 
 		   }
 		   if (numero_extraer == 1) {
@@ -975,49 +1043,49 @@ private: System::Void btn_insertar_Click(System::Object^ sender, System::EventAr
 			   contador1;
 			   contador1++;
 				   if (contador1 > 3) {
-					   MessageBox::Show("Ha ganado");
+					   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				   }
 		   }
 		   if (numero_insertar == 2) {
 			   contador2;
 			   contador2++;
 			   if (contador2 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 		   if (numero_insertar == 3) {
 			   contador3;
 			   contador3++;
 			   if (contador3 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 		   if (numero_insertar == 4) {
 			   contador4;
 			   contador4++;
 			   if (contador4 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 		   if (numero_insertar == 5) {
 			   contador5;
 			   contador5++;
 			   if (contador5 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 		   if (numero_insertar == 6) {
 			   contador6;
 			   contador6++;
 			   if (contador6 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 		   if (numero_insertar == 7) {
 			   contador7;
 			   contador7++;
 			   if (contador7 > 3) {
-				   MessageBox::Show("Ha ganado");
+				   MessageBox::Show("Ha ganado", "Felicidad", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			   }
 		   }
 	   }
@@ -1026,151 +1094,251 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void btn_Ayuda_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (miPilaGeneral->GetValueAtEnd() == (miPila1->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 1");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila2->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 2");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila3->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 3");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila4->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 4");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila5->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 5");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila6->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 6");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPilaGeneral->GetValueAtEnd() == (miPila7->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del mazo al grupo 7");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del mazo al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 2");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 3");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 4");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 5");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 6");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila1->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 1 al grupo 7");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 1 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 71");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 3");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 4");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 5");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 6");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila2->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 2 al grupo 7");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 2 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 1");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 2");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 4");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 5");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 6");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila3->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 3 al grupo 7");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 3 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 1");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 2");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 3");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 5");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 6");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila4->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 4 al grupo 7");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 4 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 1");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 2");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 3");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 4");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 6");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 6", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila5->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 5 al grupo 7");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 5 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 6 al grupo 1");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 6 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 6 al grupo 2");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 6 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 6 al grupo 3");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 6 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-		MessageBox::Show("Puede mover del grupo 6 al grupo 4");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 6 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 6 al grupo 5");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+		MessageBox::Show("Puede mover del grupo 6 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila6->Value_Extract_Peek() == (miPila7->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 6 al grupo 7");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 6 al grupo 7", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila1->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 1");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 7 al grupo 1", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila2->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 2");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 7 al grupo 2", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila3->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 3");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 7 al grupo 3", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila4->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 4");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 7 al grupo 4", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila5->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 5");
+	puntaje = puntaje - 3;
+	lbl_puntaje->Text = Convert::ToString(puntaje);
+	MessageBox::Show("Puede mover del grupo 7 al grupo 5", "¡Suerte!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 	else if (miPila7->Value_Extract_Peek() == (miPila6->Value_Extract_Peek() - 1)) {
-	MessageBox::Show("Puede mover del grupo 7 al grupo 6");
+		puntaje = puntaje - 3;
+		lbl_puntaje->Text = Convert::ToString(puntaje);
+	}
+	else {
+	MessageBox::Show("No hay movimientos, genere una nueva carta", "Ups", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 	}
 }
 };
