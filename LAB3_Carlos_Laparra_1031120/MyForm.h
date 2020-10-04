@@ -806,7 +806,12 @@ private: System::Void btn_extraer_Click(System::Object^ sender, System::EventArg
 
 }
 private: System::Void btn_insertar_Click(System::Object^ sender, System::EventArgs^ e) {
-	numero_insertar = Convert::ToInt32(txt_insertar->Text);
+	try {
+		numero_insertar = Convert::ToInt32(txt_insertar->Text);
+	}
+	catch(Exception^ e){
+		MessageBox::Show("Ingresó un valor inválido", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 	//Validación para insertar
 	if (numero_insertar == 1) {
 		//Si la lista está vacía guarda cualquier número
